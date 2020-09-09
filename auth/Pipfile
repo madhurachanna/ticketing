@@ -10,6 +10,9 @@ flask = "*"
 pydantic = "*"
 flask-sqlalchemy = "*"
 psycopg2-binary = "*"
+shortuuid = "*"
+bcrypt = "*"
+flask-bcrypt = "*"
 
 [requires]
 python_version = "3.8"

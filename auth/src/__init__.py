@@ -1,15 +1,22 @@
 from flask import Flask
 from src.config import Config
 from flask_sqlalchemy import SQLAlchemy
-# app = Flask(__name__)
+from flask_bcrypt import Bcrypt
+
+app = Flask(__name__)
+app.config.from_object(Config)
+db = SQLAlchemy()
+session = db.session
+bcrypt = Bcrypt()
 
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    db = SQLAlchemy()
     db.init_app(app)
+    bcrypt.init_app(app)
+    
     with app.app_context():
         db.create_all()
 
@@ -19,3 +26,6 @@ def create_app(config_class=Config):
     app.register_blueprint(signup)
 
     return app
+
+
+from src import models

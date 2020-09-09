@@ -19,17 +19,17 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: pg-data
+                  name: pg-auth-data
                   key: USER 
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
-                  name: pg-data
+                  name: pg-auth-data
                   key: DB 
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: pg-data
+                  name: pg-auth-data
                   key: PASS 
 
 ---
