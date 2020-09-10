@@ -46,6 +46,10 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
+            - name: REDIS_HOST
+              value: 'auth-redis-service'
+            - name: REDIS_PORT
+              value: '6379'
 
 ---
 apiVersion: v1
