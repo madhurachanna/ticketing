@@ -20,13 +20,10 @@ def signup():
             raise BadRequestError('user already exists')
 
         newUsr = C.add_new_user(usr)
-        print(newUsr)
         return {'access_token': create_access_token(newUsr)}
 
     except ValidationError as e:
         raise RequestValidationError(e.errors())
-
-    return "Signup"
 
 
 @jwt_required

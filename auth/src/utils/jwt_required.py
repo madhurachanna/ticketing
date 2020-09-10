@@ -1,6 +1,6 @@
 from functools import wraps
 from flask_jwt_extended import verify_jwt_in_request
-from src.errors.jwt_token_validation_error import JwtTokenValidationError
+from src.errors.authentication_error import AuthenticationError
 
 
 def jwt_required(fn):
@@ -10,5 +10,5 @@ def jwt_required(fn):
             verify_jwt_in_request()
             return fn(*args, **kwargs)
         except:
-            raise JwtTokenValidationError()
+            raise AuthenticationError()
     return wrapper

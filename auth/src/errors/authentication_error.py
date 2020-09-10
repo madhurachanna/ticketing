@@ -1,4 +1,4 @@
-class JwtTokenValidationError(Exception):
+class AuthenticationError(Exception):
 
     def __init__(self, reason='authentication required'):
         self.reason = reason

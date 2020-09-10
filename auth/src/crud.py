@@ -7,7 +7,7 @@ def add_new_user(usr):
     user.set_password(usr.password)
     session.add(user)
     session.commit()
-    return {'username': user.username, 'id': user.id}
+    return user.dict()
 
 
 def get_user_by_email(email):

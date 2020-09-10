@@ -23,10 +23,12 @@ def create_app(config_class=Config):
     with app.app_context():
         db.create_all()
 
-    from src.routes.signup import signup
     from src.middleware.error_handler import errors
+    from src.routes.signup import signup
+    from src.routes.signin import signin
     app.register_blueprint(errors)
     app.register_blueprint(signup)
+    app.register_blueprint(signin)
 
     return app
 
