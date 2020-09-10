@@ -5,3 +5,4 @@ signup = Blueprint("signup", __name__)
 
 
 signup.route("/api/users/signup", methods=["POST"])(H.signup)
+signup.route("/api/users/protected", methods=["GET"])(H.protected)

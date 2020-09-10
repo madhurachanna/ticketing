@@ -30,7 +30,22 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: pg-auth-data
-                  key: PASS 
+                  key: PASS
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: pg-auth-data
+                  key: PORT
+            - name: POSTGRES_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: pg-auth-data
+                  key: HOST
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
 
 ---
 apiVersion: v1

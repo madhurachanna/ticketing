@@ -15,3 +15,14 @@ class User(BaseModel):
 
     class Config:
         extra = "forbid"
+
+
+class SignUpValid(User):
+    username: str
+
+    class Config:
+        extra = "forbid"
+
+
+class SignInValid(User):
+    pass

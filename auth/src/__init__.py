@@ -2,12 +2,14 @@ from flask import Flask
 from src.config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from flask_jwt_extended import JWTManager
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy()
 session = db.session
 bcrypt = Bcrypt()
+jwt = JWTManager()
 
 
 def create_app(config_class=Config):
@@ -16,7 +18,8 @@ def create_app(config_class=Config):
 
     db.init_app(app)
     bcrypt.init_app(app)
-    
+    jwt.init_app(app)
+
     with app.app_context():
         db.create_all()
 
@@ -28,4 +31,4 @@ def create_app(config_class=Config):
     return app
 
 
-from src import models
+from src.models import *
