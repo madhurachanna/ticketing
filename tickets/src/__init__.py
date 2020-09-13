@@ -27,8 +27,10 @@ def create_app(config_class=Config):
 
     from src.middleware.error_handler import errors
     from src.routes.new_ticket import new_ticket
+    from src.routes.get_tickets import get_tickets
 
     app.register_blueprint(new_ticket)
+    app.register_blueprint(get_tickets)
     app.register_blueprint(errors)
 
     return app

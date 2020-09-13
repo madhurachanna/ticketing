@@ -19,18 +19,18 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: pg-auth-data
-                  key: USER 
+                  name: auth-secret
+                  key: POSTGRES_USER
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
-                  name: pg-auth-data
-                  key: DB 
+                  name: auth-secret
+                  key: POSTGRES_DB 
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: pg-auth-data
-                  key: PASS 
+                  name: auth-secret
+                  key: POSTGRES_PASSWORD 
           ports:
             - containerPort: 5432
           volumeMounts:

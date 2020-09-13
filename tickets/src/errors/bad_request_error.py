@@ -2,7 +2,7 @@ from src.errors.custom_error import CustomError
 
 
 class BadRequestError(CustomError):
-    def __init__(self, reason="bad request!"):
+    def __init__(self, reason="Bad request!"):
         print(reason)
         self.reason = reason
 
