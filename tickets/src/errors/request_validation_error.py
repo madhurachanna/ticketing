@@ -14,7 +14,10 @@ class RequestValidationError(CustomError):
     def serialize_errors(self):
         return list(
             map(
-                lambda err: {"message": err["msg"], "field": err["loc"][0]},
+                lambda err: {
+                    "message": err["msg"].capitalize(),
+                    "field": err["loc"][0],
+                },
                 self.errors,
             )
         )

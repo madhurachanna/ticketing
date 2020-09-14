@@ -1,71 +1,70 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-deployment
+  name: tickets-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth
+      app: tickets
   template:
     metadata:
       labels:
-        app: auth
+        app: tickets
     spec:
       containers:
-        - name: auth
-          image: madhurachanna/auth
+        - name: tickets
+          image: madhurachanna/tickets
           env:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: auth-secret
+                  name: tickets-secret
                   key: POSTGRES_USER 
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
-                  name: auth-secret
+                  name: tickets-secret
                   key: POSTGRES_DB 
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: auth-secret
+                  name: tickets-secret
                   key: POSTGRES_PASSWORD
             - name: POSTGRES_PORT
               valueFrom:
                 secretKeyRef:
-                  name: auth-secret
+                  name: tickets-secret
                   key: POSTGRES_PORT
             - name: POSTGRES_HOST
               valueFrom:
                 secretKeyRef:
-                  name: auth-secret
+                  name: tickets-secret
                   key: POSTGRES_HOST
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
-                  name: auth-secret
+                  name: tickets-secret
                   key: JWT_KEY
             - name: REDIS_HOST
               valueFrom:
                 secretKeyRef:
-                  name: auth-secret
+                  name: tickets-secret
                   key: REDIS_HOST
             - name: REDIS_PORT
               valueFrom:
                 secretKeyRef:
-                  name: auth-secret
+                  name: tickets-secret
                   key: REDIS_PORT
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-service
+  name: tickets-service
 spec:
-  # type: ClusterIP
   selector:
-    app: auth
+    app: tickets
   ports:
     - protocol: TCP
       port: 5000

@@ -1,6 +1,5 @@
-from flask_jwt_extended import get_raw_jwt
+from flask_jwt_extended import get_raw_jwt, jwt_required
 
-from src.utils.jwt_required import jwt_required
 from src.utils.jwt_token_blacklist import add_token_to_blacklist
 
 
