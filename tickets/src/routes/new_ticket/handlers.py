@@ -1,8 +1,6 @@
 from flask import request
-from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import get_jwt_identity, jwt_required
 
-
-from src.utils.jwt_required import jwt_required
 from src.validators.new_ticket import new_ticket_req_validate
 from src.crud import add_new_ticket
 
