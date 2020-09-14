@@ -10,4 +10,4 @@ from src.crud import add_new_ticket
 def create_new_ticket():
     user_id = get_jwt_identity()["id"]
     ticket = add_new_ticket({**request.get_json(), "user_id": user_id})
-    return ticket
+    return ticket, 201

@@ -1,22 +1,17 @@
 from flask import request
-from pydantic import ValidationError
 from flask_jwt_extended import create_access_token
 
-from src.validators.user import SignInValid
-from src.errors.request_validation_error import RequestValidationError
+from src.validators.signin import signin_req_validate
 from src.errors.authentication_error import AuthenticationError
 import src.crud as C
 
 
+@signin_req_validate
 def signin():
-    try:
-        usr = SignInValid(**(request.get_json() or {}))
+    usr = request.valid_req
 
-        existing_usr = C.get_user_by_email(usr.email)
-        if(not existing_usr or not existing_usr.check_password(usr.password)):
-            raise AuthenticationError('incorrect username or password')
+    existing_usr = C.get_user_by_email(usr.email)
+    if not existing_usr or not existing_usr.check_password(usr.password):
+        raise AuthenticationError("Incorrect username or password")
 
-        return {'access_token': create_access_token(existing_usr.dict())}
-
-    except ValidationError as e:
-        raise RequestValidationError(e.errors())
+    return {"access_token": create_access_token(existing_usr.dict())}

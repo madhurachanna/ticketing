@@ -1,6 +1,8 @@
-class BadRequestError(Exception):
+from src.errors.custom_error import CustomError
 
-    def __init__(self, reason='Bad request!'):
+
+class BadRequestError(CustomError):
+    def __init__(self, reason="Bad request!"):
         print(reason)
         self.reason = reason
 

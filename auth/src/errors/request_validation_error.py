@@ -1,4 +1,7 @@
-class RequestValidationError(Exception):
+from src.errors.custom_error import CustomError
+
+
+class RequestValidationError(CustomError):
     errors = []
 
     def __init__(self, errors):

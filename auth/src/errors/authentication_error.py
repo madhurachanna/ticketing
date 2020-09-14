@@ -1,6 +1,8 @@
-class AuthenticationError(Exception):
+from src.errors.custom_error import CustomError
 
-    def __init__(self, reason='authentication required'):
+
+class AuthenticationError(CustomError):
+    def __init__(self, reason="Authentication required"):
         self.reason = reason
 
     @property
