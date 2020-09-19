@@ -7,10 +7,9 @@ def add_new_user(usr):
     user.set_password(usr.password)
     session.add(user)
     session.commit()
-    return user.dict()
+    return user.serialize()
 
 
 def get_user_by_email(email):
-    print(email)
     user = session.query(User).filter_by(email=email).first()
     return user

@@ -1,12 +1,13 @@
 from flask import request
 from flask_jwt_extended import create_access_token, jwt_required
 
-from src.validators.signup import signup_req_validate
+from src.validators.signup import SignUpValidator
 from src.errors.bad_request_error import BadRequestError
+from src.middleware.request_validator import request_validator
 import src.crud as C
 
 
-@signup_req_validate
+@request_validator(SignUpValidator)
 def signup():
     usr = request.valid_req
 

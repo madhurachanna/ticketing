@@ -1,12 +1,8 @@
-from pydantic import BaseModel, constr, validator, ValidationError
-from flask import request
-from functools import wraps
+from pydantic import BaseModel, constr, validator
 import re
 
-from src.errors.request_validation_error import RequestValidationError
 
-
-class SignInValid(BaseModel):
+class SignInValidator(BaseModel):
     email: str
     password: constr(min_length=4, max_length=20)
 
@@ -19,16 +15,3 @@ class SignInValid(BaseModel):
 
     class Config:
         extra = "forbid"
-
-
-def signin_req_validate(fn):
-    @wraps(fn)
-    def wrapper(*args, **kwargs):
-        try:
-            req = request.get_json() or {}
-            request.valid_req = SignInValid(**req)
-            return fn(*args, **kwargs)
-        except ValidationError as e:
-            raise RequestValidationError(e.errors())
-
-    return wrapper

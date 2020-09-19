@@ -17,9 +17,5 @@ class User(db.Model):
     def check_password(self, password):
         return bcrypt.check_password_hash(self.pw_hash, password)
 
-    def dict(self):
-        return ({
-            'id': self.id,
-            'username': self.username,
-            'email': self.email
-        })
+    def serialize(self):
+        return {"id": self.id, "username": self.username, "email": self.email}

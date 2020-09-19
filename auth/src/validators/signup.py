@@ -1,12 +1,8 @@
-from pydantic import BaseModel, constr, validator, ValidationError
-from flask import request
-from functools import wraps
+from pydantic import BaseModel, constr, validator
 import re
 
-from src.errors.request_validation_error import RequestValidationError
 
-
-class SignUpValid(BaseModel):
+class SignUpValidator(BaseModel):
     email: str
     username: str
     password: constr(min_length=4, max_length=20)
@@ -20,16 +16,3 @@ class SignUpValid(BaseModel):
 
     class Config:
         extra = "forbid"
-
-
-def signup_req_validate(fn):
-    @wraps(fn)
-    def wrapper(*args, **kwargs):
-        try:
-            req = request.get_json() or {}
-            request.valid_req = SignUpValid(**req)
-            return fn(*args, **kwargs)
-        except ValidationError as e:
-            raise RequestValidationError(e.errors())
-
-    return wrapper

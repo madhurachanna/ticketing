@@ -1,12 +1,13 @@
 from flask import request
 from flask_jwt_extended import create_access_token
 
-from src.validators.signin import signin_req_validate
+from src.validators.signin import SignInValidator
 from src.errors.authentication_error import AuthenticationError
+from src.middleware.request_validator import request_validator
 import src.crud as C
 
 
-@signin_req_validate
+@request_validator(SignInValidator)
 def signin():
     usr = request.valid_req
 
