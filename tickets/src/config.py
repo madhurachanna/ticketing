@@ -18,9 +18,6 @@ class Config:
     # REFRESH_EXPIRES = timedelta(days=30)
 
     JWT_SECRET_KEY = os.environ["JWT_KEY"]
-    JWT_BLACKLIST_ENABLED = True
+    # JWT_BLACKLIST_ENABLED = True
     JWT_BLACKLIST_TOKEN_CHECKS = ["access"]
     JWT_ACCESS_TOKEN_EXPIRES = ACCESS_EXPIRES
-
-    REDIS_HOST = os.environ["REDIS_HOST"]
-    REDIS_PORT = os.environ["REDIS_PORT"]

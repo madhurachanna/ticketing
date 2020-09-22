@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from src.errors.custom_error import CustomError
+from ..errors.custom_error import CustomError
 
 errors = Blueprint("errors", __name__)
 

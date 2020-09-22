@@ -1,4 +1,4 @@
-FROM madhurachanna/ticketing-common:0.05 as common-builder
+FROM madhurachanna/ticketing-common:0.08 as common-builder
 
 FROM python:3.8.2
 WORKDIR /app
