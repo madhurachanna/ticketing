@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 import redis
+from celery import Celery
 
 from src.config import Config
 
@@ -15,6 +16,7 @@ jwt = JWTManager()
 revoked_store = redis.StrictRedis(
     host=Config.REDIS_HOST, port=Config.REDIS_PORT, db=0, decode_responses=True
 )
+celery = Celery("auth", broker=Config.CELERY_BROKER_URL)
 
 
 def create_app(config_class=Config):

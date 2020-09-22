@@ -15,6 +15,7 @@ bcrypt = "*"
 flask-bcrypt = "*"
 flask-jwt-extended = "*"
 redis = "*"
+celery = "*"
 
 [requires]
 python_version = "3.8"

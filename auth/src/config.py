@@ -15,8 +15,6 @@ class Config:
     )
 
     ACCESS_EXPIRES = timedelta(minutes=15)
-    # REFRESH_EXPIRES = timedelta(days=30)
-
     JWT_SECRET_KEY = os.environ["JWT_KEY"]
     JWT_BLACKLIST_ENABLED = True
     JWT_BLACKLIST_TOKEN_CHECKS = ["access"]
@@ -24,3 +22,15 @@ class Config:
 
     REDIS_HOST = os.environ["REDIS_HOST"]
     REDIS_PORT = os.environ["REDIS_PORT"]
+
+    RABBITMQ = {
+        "USER": os.environ["RABBITMQ_DEFAULT_USER"],
+        "PASS": os.environ["RABBITMQ_DEFAULT_PASS"],
+        "HOST": os.environ["RABBITMQ_DEFAULT_HOST"],
+        "PORT": os.environ["RABBITMQ_DEFAULT_PORT"],
+        "VHOST": os.environ["RABBITMQ_DEFAULT_VHOST"],
+    }
+    BROKER = "amqp://{USER}:{PASS}@{HOST}:{PORT}/{VHOST}".format(**RABBITMQ)
+
+    CELERY_BROKER_URL = BROKER
+    CELERY_RESULT_BACKEND = BROKER
