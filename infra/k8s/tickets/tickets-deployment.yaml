@@ -46,16 +46,6 @@ spec:
                 secretKeyRef:
                   name: tickets-secret
                   key: JWT_KEY
-            - name: REDIS_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: tickets-secret
-                  key: REDIS_HOST
-            - name: REDIS_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: tickets-secret
-                  key: REDIS_PORT
 
 ---
 apiVersion: v1
