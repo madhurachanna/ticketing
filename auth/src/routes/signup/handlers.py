@@ -1,9 +1,10 @@
 from flask import request
 from flask_jwt_extended import create_access_token, jwt_required
+from common.errors.bad_request_error import BadRequestError
+from common.middleware.request_validator import request_validator
+
 
 from src.validators.signup import SignUpValidator
-from src.errors.bad_request_error import BadRequestError
-from src.middleware.request_validator import request_validator
 import src.crud as C
 
 

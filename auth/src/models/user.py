@@ -1,5 +1,5 @@
 from src import db, bcrypt
-from src.utils.short_uuid import genereate_uuid
+from common.utils.short_uuid import genereate_uuid
 
 
 class User(db.Model):
