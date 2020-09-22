@@ -1,9 +1,9 @@
 from flask import request
 from flask_jwt_extended import get_jwt_identity, jwt_required
+from common.middleware.request_validator import request_validator
 
 from src.validators.new_ticket import NewTicketValidator
 from src.crud import add_new_ticket
-from src.middleware.request_validator import request_validator
 
 
 @jwt_required
