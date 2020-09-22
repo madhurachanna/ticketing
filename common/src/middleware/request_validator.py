@@ -1,7 +1,9 @@
 import functools
 from flask import request
-from src.errors.request_validation_error import RequestValidationError
 from pydantic import ValidationError
+
+
+from ..errors.request_validation_error import RequestValidationError
 
 
 def request_validator(ValidatorSchema):
@@ -11,7 +13,6 @@ def request_validator(ValidatorSchema):
             try:
                 req = request.get_json() or {}
                 request.valid_req = ValidatorSchema(**req)
-
             except ValidationError as e:
                 raise RequestValidationError(e.errors())
 

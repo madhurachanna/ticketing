@@ -10,9 +10,9 @@ app.config.from_object(Config)
 db = SQLAlchemy()
 session = db.session
 jwt = JWTManager()
-revoked_store = redis.StrictRedis(
-    host=Config.REDIS_HOST, port=Config.REDIS_PORT, db=0, decode_responses=True
-)
+# revoked_store = redis.StrictRedis(
+#     host=Config.REDIS_HOST, port=Config.REDIS_PORT, db=0, decode_responses=True
+# )
 
 
 def create_app(config_class=Config):
@@ -25,7 +25,7 @@ def create_app(config_class=Config):
     with app.app_context():
         db.create_all()
 
-    from src.middleware.error_handler import errors
+    from common.middleware.error_handler import errors
     from src.routes.new_ticket import new_ticket
     from src.routes.get_tickets import get_tickets
 
@@ -36,4 +36,5 @@ def create_app(config_class=Config):
     return app
 
 
+import src.middleware.jwt_token_loader
 from src.models import *

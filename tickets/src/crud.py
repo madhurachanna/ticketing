@@ -1,6 +1,6 @@
 from src import session
 from src.models.ticket import Ticket
-from src.errors.not_found_error import NotFoundError
+from common.errors.not_found_error import NotFoundError
 
 
 def add_new_ticket(tkt):

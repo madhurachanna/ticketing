@@ -1,14 +1,14 @@
-from src.errors.custom_error import CustomError
+from .custom_error import CustomError
 
 
-class NotFoundError(CustomError):
-    def __init__(self, reason="Not found!"):
+class BadRequestError(CustomError):
+    def __init__(self, reason="Bad request!"):
         print(reason)
         self.reason = reason
 
     @property
     def status_code(self):
-        return 404
+        return 400
 
     def serialize_errors(self):
         return [{"message": self.reason}]
