@@ -1,5 +1,6 @@
+from common.utils.short_uuid import genereate_uuid
+
 from src import db
-from src.utils.short_uuid import genereate_uuid
 
 
 class Ticket(db.Model):

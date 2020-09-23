@@ -7,6 +7,7 @@ from celery import Celery
 
 from src.config import Config
 
+
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy()
@@ -30,7 +31,7 @@ def create_app(config_class=Config):
     with app.app_context():
         db.create_all()
 
-    from src.middleware.error_handler import errors
+    from common.middleware.error_handler import errors
     from src.routes.signup import signup
     from src.routes.signin import signin
     from src.routes.signout import signout
@@ -45,4 +46,5 @@ def create_app(config_class=Config):
     return app
 
 
+import src.middleware.jwt_token_loader
 from src.models import *

@@ -1,4 +1,4 @@
-from src.errors.custom_error import CustomError
+from .custom_error import CustomError
 
 
 class AuthenticationError(CustomError):
