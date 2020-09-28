@@ -21,3 +21,12 @@ class Config:
     # JWT_BLACKLIST_ENABLED = True
     JWT_BLACKLIST_TOKEN_CHECKS = ["access"]
     JWT_ACCESS_TOKEN_EXPIRES = ACCESS_EXPIRES
+
+    RABBITMQ = {
+        "USER": os.environ["RABBITMQ_DEFAULT_USER"],
+        "PASS": os.environ["RABBITMQ_DEFAULT_PASS"],
+        "HOST": os.environ["RABBITMQ_DEFAULT_HOST"],
+        "PORT": os.environ["RABBITMQ_DEFAULT_PORT"],
+        "VHOST": os.environ["RABBITMQ_DEFAULT_VHOST"],
+    }
+    BROKER = "amqp://{USER}:{PASS}@{HOST}:{PORT}/{VHOST}".format(**RABBITMQ)

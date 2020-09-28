@@ -14,7 +14,7 @@ spec:
             backend:
               serviceName: auth-service
               servicePort: 5000
-          - path: /api/tickets/?(.*)
-            backend:
-              serviceName: tickets-service
-              servicePort: 5000
+          # - path: /api/tickets/?(.*)
+          #   backend:
+          #     serviceName: tickets-service
+          #     servicePort: 5000
