@@ -22,20 +22,17 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: rabbitmq-secret
-                  key: RABBITMQ_DEFAULT_USER
-            
+                  key: RABBITMQ_DEFAULT_USER     
             - name: RABBITMQ_DEFAULT_PASS
               valueFrom:
                 secretKeyRef:
                   name: rabbitmq-secret
                   key: RABBITMQ_DEFAULT_PASS
-          # volumeMounts:
-          #   - name: auth-postgres-storage
-          #     mountPath: /var/lib/postgresql/data
-      # volumes:
-      #   - name: auth-postgres-storage
-      #     persistentVolumeClaim:
-      #       claimName: auth-db-pvc
+            - name: RABBITMQ_DEFAULT_VHOST
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-secret
+                  key: RABBITMQ_DEFAULT_VHOST
 
 
 ---
@@ -50,16 +47,3 @@ spec:
   ports:
     - port: 5672
       targetPort: 5672
-
-
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: auth-db-pvc
-# spec:
-#   accessModes:
-#     - ReadWriteMany
-#   resources:
-#     requests:
-#       storage: 1Gi

@@ -7,4 +7,7 @@ COPY ./Pipfile* ./
 RUN pipenv install --ignore-pipfile --deploy
 COPY ./ ./
 COPY --from=common-builder /app/src /app/common/
-CMD ["pipenv", "run", "python", "run.py" ]
+
+EXPOSE 5000
+
+CMD pipenv run gunicorn -b :5000 run:app

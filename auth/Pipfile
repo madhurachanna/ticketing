@@ -16,6 +16,8 @@ flask-bcrypt = "*"
 flask-jwt-extended = "*"
 redis = "*"
 celery = "*"
+pika = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"

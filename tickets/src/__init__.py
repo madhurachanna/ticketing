@@ -1,8 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
-import redis
-
 from src.config import Config
 
 app = Flask(__name__)
@@ -11,7 +9,7 @@ db = SQLAlchemy()
 session = db.session
 jwt = JWTManager()
 # revoked_store = redis.StrictRedis(
-#     host=Config.REDIS_HOST, port=Config.REDIS_PORT, db=0, decode_responses=True
+#   host=Config.REDIS_HOST, port=Config.REDIS_PORT, db=0, decode_responses=True
 # )
 
 
