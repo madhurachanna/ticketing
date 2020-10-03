@@ -28,9 +28,11 @@ def create_app(config_class=Config):
     from common.middleware.error_handler import errors
 
     from src.routes.new_order import new_order
+    from src.tests import tests
 
     app.register_blueprint(new_order)
     app.register_blueprint(errors)
+    app.register_blueprint(tests)
 
     return app
 
