@@ -4,8 +4,7 @@ from common.errors.not_found_error import NotFoundError
 from common.errors.bad_request_error import BadRequestError
 from common.middleware.request_validator import request_validator
 
-from src.crud.tickets import ticket_by_id
-from src.crud.orders import create_new_order as new_order
+from src.crud import order_by_reserved_ticket_id, ticket_by_id, create_order
 from src.validators.new_order import NewOrderValidatior
 
 
@@ -18,11 +17,11 @@ def create_new_order():
     if not ticket:
         raise NotFoundError("Ticket not found")
 
-    is_reserved = ticket.is_reserved()
+    is_reserved = order_by_reserved_ticket_id(ticket.id)
     if is_reserved:
         raise BadRequestError("Ticket is already reserved")
 
     user_id = get_jwt_identity()["id"]
-    order = new_order({**req, "user_id": user_id})
+    order = create_order({**req, "user_id": user_id})
 
     return order.serialize(), 201
