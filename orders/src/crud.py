@@ -24,7 +24,7 @@ def get_orders_by_user_id(user_id):
     return orders
 
 
-def get_order_by_user_id(user_id, order_id):
+def get_order(user_id, order_id):
     order = (
         session.query(Order, Ticket)
         .join(Ticket, Ticket.id == Order.ticket_id)
@@ -32,6 +32,13 @@ def get_order_by_user_id(user_id, order_id):
         .first()
     )
     return order
+
+
+def delete_order(order):
+    order.status = OrderStatus.Cancelled
+    session.add(order)
+    session.commit()
+    return get_order(order.user_id, order.id)
 
 
 def create_order(odr):

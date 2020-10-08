@@ -29,10 +29,12 @@ def create_app(config_class=Config):
 
     from src.routes.new_order import new_order
     from src.routes.get_orders import get_orders
+    from src.routes.del_order import del_order
     from src.tests import tests
 
     app.register_blueprint(new_order)
     app.register_blueprint(get_orders)
+    app.register_blueprint(del_order)
     app.register_blueprint(errors)
     app.register_blueprint(tests)
 
