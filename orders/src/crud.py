@@ -24,6 +24,16 @@ def get_orders_by_user_id(user_id):
     return orders
 
 
+def get_order_by_user_id(user_id, order_id):
+    order = (
+        session.query(Order, Ticket)
+        .join(Ticket, Ticket.id == Order.ticket_id)
+        .filter(Order.id == order_id, Order.user_id == user_id)
+        .first()
+    )
+    return order
+
+
 def create_order(odr):
     order = Order(**odr)
     session.add(order)
