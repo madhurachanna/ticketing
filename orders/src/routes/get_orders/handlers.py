@@ -1,6 +1,7 @@
+from flask import jsonify
 from flask_jwt_extended import get_jwt_identity, jwt_required
 
-from src.crud.orders import get_orders_by_user_id
+from src.crud import get_orders_by_user_id
 from src.serializers import serialize_orders_by_user_id
 
 
@@ -11,4 +12,4 @@ def get_orders():
     orders = get_orders_by_user_id(user_id)
     orders = serialize_orders_by_user_id(orders)
 
-    return orders
+    return jsonify(orders)

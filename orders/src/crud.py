@@ -16,7 +16,7 @@ def order_by_ticket_status(ticket_id, status=[]):
 
 def get_orders_by_user_id(user_id):
     orders = (
-        session.query(Order)
+        session.query(Order, Ticket)
         .join(Ticket, Ticket.id == Order.ticket_id)
         .filter(Order.user_id == user_id)
         .all()
