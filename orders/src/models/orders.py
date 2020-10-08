@@ -24,7 +24,7 @@ class Order(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "status": self.status,
+            "status": self.status.value,
             "expires_at": self.expires_at,
             "version": self.version,
             "ticket_id": self.ticket_id,

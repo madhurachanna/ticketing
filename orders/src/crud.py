@@ -27,7 +27,7 @@ def get_orders_by_user_id(user_id):
 def create_order(odr):
     order = Order(**odr)
     session.add(order)
-    session.commit(order)
+    session.commit()
     return order
 
 
@@ -38,14 +38,14 @@ def ticket_by_id(ticket_id):
 
 
 def order_by_reserved_ticket_id(ticket_id):
-    status = [
+    status = (
         OrderStatus.Created,
         OrderStatus.AwaitingPayment,
         OrderStatus.Complete,
-    ]
+    )
     order = (
         session.query(Order)
-        .filter(Order.ticket_id == ticket_id, Order.ticket_id.in_(status))
+        .filter(Order.ticket_id == ticket_id, Order.status.in_(status))
         .first()
     )
     return order
